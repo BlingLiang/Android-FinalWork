@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.SimpleAdapter;
 
+import androidx.annotation.NonNull;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -24,9 +26,8 @@ import java.util.HashMap;
 import java.util.List;
 //爬取人民网财经新闻
 public class TestListNews2 extends ListActivity implements Runnable, AdapterView.OnItemClickListener {
-    private String[] list_data = {"one", "tow", "three", "four"};
+
     Handler handler;
-    private ArrayList<HashMap<String, String>> listItems; // 存放文字、图片信息
     private SimpleAdapter listItemAdapter; // 适配器
 
 
@@ -43,7 +44,7 @@ public class TestListNews2 extends ListActivity implements Runnable, AdapterView
 
         handler = new Handler() {
             @Override
-            public void handleMessage(Message msg) {
+            public void handleMessage(@NonNull Message msg) {
                 if (msg.what == 3) {
                     List<HashMap<String, String>> tList = (List<HashMap<String, String>>) msg.obj;
 
@@ -60,7 +61,8 @@ public class TestListNews2 extends ListActivity implements Runnable, AdapterView
     }
 
     private void initListView() {
-        listItems = new ArrayList<HashMap<String, String>>();
+        // 存放文字、图片信息
+        ArrayList<HashMap<String, String>> listItems = new ArrayList<HashMap<String, String>>();
         for (int i = 0; i < 10; i++) {
             HashMap<String, String> map = new HashMap<String, String>();
             map.put("Title", "title：" + i); // 标题文字
