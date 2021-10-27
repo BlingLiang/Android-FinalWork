@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">温度转换程序</string>
+    <string name="hello">你好！</string>
+    <string name="hint">请输入温度，并选择转换方式</string>
+    <string name="FtoC">华氏转摄氏</string>
+    <string name="CtoF">摄氏转华氏</string>
+    <string name="btn_reset_label">重置</string>
+    <string name="label_add1">加一分</string>
+    <string name="label_add2">加二分</string>
+    <string name="label_add3">加三分</string>
+    <string name="btn_dollar_label">美元</string>
+    <string name="rmb_hint">输入人民币</string>
+    <string name="btn_euro_label">欧元</string>
+    <string name="btn_won_label">韩元</string>
+    <string name="rmb">人民币</string>
+    <string name="won">韩元</string>
+    <string name="dollar">美元</string>
+    <string name="euro">欧元</string>
+    <string name="tishi">请选择您的基准货币</string>
+    <string name="yen">日元</string>
+    <string name="btn_save_label">保存</string>
+    <string name="menu_set_label">设置</string>
+    <string name="label_open_list">打开列表</string>
+    <string name="sousuo">搜索</string>
+</resources>
