@@ -22,7 +22,7 @@ import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
+//爬取中国财经新闻网
 public class TestListNews6 extends ListActivity implements Runnable, AdapterView.OnItemClickListener {
     private String[] list_data = {"one", "tow", "three", "four"};
     Handler handler;
