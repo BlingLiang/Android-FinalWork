@@ -22,7 +22,7 @@ import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-//同花顺爬取
+//爬取百度财经新闻
 public class TestListNews3 extends ListActivity implements Runnable, AdapterView.OnItemClickListener {
     private String[] list_data = {"one", "tow", "three", "four"};
     Handler handler;
@@ -81,18 +81,18 @@ public class TestListNews3 extends ListActivity implements Runnable, AdapterView
         List<HashMap<String, String>> testList = new ArrayList<HashMap<String, String>>();
         try {
             Thread.sleep(3000);
-            Document doc = Jsoup.connect("http://stock.10jqka.com.cn/bkfy_list/").get();
-            Elements mains = doc.getElementsByClass("list-con");
+            Document doc = Jsoup.connect("http://news.baidu.com/finance").get();
+            Elements mains = doc.getElementsByClass("middle-focus-news");
             Element main = mains.get(0);
 
             //获取链接
             Elements lis = doc.getElementsByTag("li");
             Elements spans = main.getElementsByTag("a");
-            for (int j = 51; j <= 74; j++) {
-                String content = lis.get(j+29).getElementsByTag("a").attr("href");
+            for (int j = 35; j <= 55; j++) {
+                String content = lis.get(j).getElementsByTag("a").attr("href");
                 HashMap<String, String> map = new HashMap<String, String>();
                 map.put("url", content);
-                Element span = spans.get((j-51)*2);
+                Element span = spans.get(j-35);
                 String spanStr = span.html();
                 map.put("Title", spanStr);
                 testList.add(map);
