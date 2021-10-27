@@ -22,7 +22,7 @@ import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
+//东方财富爬取
 public class TestListNews5 extends ListActivity implements Runnable, AdapterView.OnItemClickListener {
     private String[] list_data = {"one", "tow", "three", "four"};
     Handler handler;
@@ -48,7 +48,7 @@ public class TestListNews5 extends ListActivity implements Runnable, AdapterView
                 if (msg.what == 3) {
                     List<HashMap<String, String>> tList = (List<HashMap<String, String>>) msg.obj;
 
-                    SimpleAdapter adapter = new SimpleAdapter(TestListNews6.this, tList, // listItems数据源
+                    SimpleAdapter adapter = new SimpleAdapter(TestListNews5.this, tList, // listItems数据源
                             R.layout.test_list_item, // ListItem的XML布局实现
                             new String[]{"Title", "url"},
                             new int[]{R.id.Title, R.id.url});
@@ -81,18 +81,18 @@ public class TestListNews5 extends ListActivity implements Runnable, AdapterView
         List<HashMap<String, String>> testList = new ArrayList<HashMap<String, String>>();
         try {
             Thread.sleep(3000);
-            Document doc = Jsoup.connect("https://www.caijing.com.cn").get();
-            Elements mains = doc.getElementsByClass("yaowen");
+            Document doc = Jsoup.connect("https://finance.eastmoney.com").get();
+            Elements mains = doc.getElementsByClass("daodu");
             Element main = mains.get(0);
 
             //获取链接
             Elements lis = doc.getElementsByTag("li");
             Elements spans = main.getElementsByTag("a");
-            for (int j = 50; j <= 63; j++) {
+            for (int j = 50; j <= 69; j++) {
                 String content = lis.get(j).getElementsByTag("a").attr("href");
                 HashMap<String, String> map = new HashMap<String, String>();
                 map.put("url", content);
-                Element span = spans.get(j-47);
+                Element span = spans.get(j-40);
                 String spanStr = span.html();
                 map.put("Title", spanStr);
                 testList.add(map);
