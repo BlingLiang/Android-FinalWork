@@ -22,14 +22,13 @@ import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
+//爬取人民网财经新闻
 public class TestListNews2 extends ListActivity implements Runnable, AdapterView.OnItemClickListener {
     private String[] list_data = {"one", "tow", "three", "four"};
-    //    int msgWhat = 3;
     Handler handler;
     private ArrayList<HashMap<String, String>> listItems; // 存放文字、图片信息
     private SimpleAdapter listItemAdapter; // 适配器
-    String TAG = "TestActivity";
+
 
     @SuppressLint("HandlerLeak")
     @Override
@@ -38,7 +37,6 @@ public class TestListNews2 extends ListActivity implements Runnable, AdapterView
         initListView();
         this.setListAdapter(listItemAdapter);
         getListView().setOnItemClickListener(this);
-
         Thread t = new Thread(this);
         t.start();
 
@@ -54,7 +52,6 @@ public class TestListNews2 extends ListActivity implements Runnable, AdapterView
                             new String[]{"Title", "url"},
                             new int[]{R.id.Title, R.id.url});
                     setListAdapter(adapter);
-                    Log.i("handler", "reset list...");
 
                 }
                 super.handleMessage(msg);
@@ -83,47 +80,28 @@ public class TestListNews2 extends ListActivity implements Runnable, AdapterView
         List<HashMap<String, String>> testList = new ArrayList<HashMap<String, String>>();
         try {
             Thread.sleep(3000);
-            Document doc = Jsoup.connect("https://it.swufe.edu.cn/index/tzgg.htm").get();
-            Log.i("TestList", "run:" + doc.title());
-
-            Elements mains = doc.getElementsByClass("main");
-
-            int i = 0;
-            for (Element main : mains) {
-                Log.i("TestList", "run:table[" + i + "]=" + main);
-                i++;
-            }
-
+            Document doc = Jsoup.connect("http://money.people.com.cn/GB/218900/index.html").get();
+            Elements mains = doc.getElementsByClass("ej_list_box");
             Element main = mains.get(0);
 
             //获取链接
             Elements lis = doc.getElementsByTag("li");
-            Elements spans = main.getElementsByTag("span");
-//            for (int j = 65; j <= 84; j++) {
-            for (int j = 1; j <= 20; j++) {
+            Elements spans = main.getElementsByTag("a");
+            for (int j = 0; j <= 15; j++) {
                 String content = lis.get(j).getElementsByTag("a").attr("href");
-                Log.i(TAG, "[" + j + "]" + content);
                 HashMap<String, String> map = new HashMap<String, String>();
-//                map.put("url", content);
-                testList.add(map);
-
-//                int a = (j - 64) * 2 - 1;
-                int a = j * 2 - 1;
-                Element span = spans.get(a);
-                Log.i("TestList", "run: [" + a + "]" + span);
-
+                map.put("url", content);
+                Element span = spans.get(j);
                 String spanStr = span.html();
-                Log.i("span", spanStr);
                 map.put("Title", spanStr);
                 testList.add(map);
             }
 
-
         } catch (MalformedURLException e) {
-            Log.e("www", e.toString());
+
             e.printStackTrace();
         } catch (IOException e) {
-            Log.e("www", e.toString());
+
             e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -131,25 +109,19 @@ public class TestListNews2 extends ListActivity implements Runnable, AdapterView
         Message msg = handler.obtainMessage(3);
         msg.obj = testList;
         handler.sendMessage(msg);
-        Log.i("thread", "sendMessage.....");
+
 
     }
 
+
+
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Log.i(TAG, "onItemClick: parent=" + parent);
-        Log.i(TAG, "onItemClick: view=" + view);
-        Log.i(TAG, "onItemClick: position=" + position);
-        Log.i(TAG, "onItemClick: id=" + id);
         try {
             //从ListView中获取选中数据
             HashMap<String, String> map = (HashMap<String, String>) getListView().getItemAtPosition(position);
-            String titleStr = map.get("Title");
-            String u = map.get("url");
-            u = u.substring(2, 21);
-            String ur = "https://it.swufe.edu.cn" + u;
-            Log.i(TAG, "onItemClick: titleStr=" + titleStr);
-            Log.i(TAG, "onItemClick: urlStr" + ur);
+            String ur = map.get("url");
+
 
             //打开新的页面
             Uri uri = Uri.parse(ur);
@@ -164,3 +136,4 @@ public class TestListNews2 extends ListActivity implements Runnable, AdapterView
 
 
 }
+

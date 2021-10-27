@@ -37,7 +37,6 @@ public class TestListNews3 extends ListActivity implements Runnable, AdapterView
         initListView();
         this.setListAdapter(listItemAdapter);
         getListView().setOnItemClickListener(this);
-
         Thread t = new Thread(this);
         t.start();
 
