@@ -22,7 +22,7 @@ import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-//爬取人民网财经新闻
+//爬取每日财经网
 public class TestListNews1 extends ListActivity implements Runnable, AdapterView.OnItemClickListener {
     private String[] list_data = {"one", "tow", "three", "four"};
     Handler handler;
@@ -87,8 +87,8 @@ public class TestListNews1 extends ListActivity implements Runnable, AdapterView
             //获取链接
             Elements lis = doc.getElementsByTag("li");
             Elements spans = main.getElementsByTag("a");
-            for (int j = 0; j <= 12; j++) {
-                String content = lis.get(j).getElementsByTag("a").attr("href");
+            for (int j = 0; j <= 14; j++) {
+                String content = lis.get(j+41).getElementsByTag("a").attr("href");
                 HashMap<String, String> map = new HashMap<String, String>();
                 map.put("url", content);
                 Element span = spans.get(j);
@@ -120,7 +120,10 @@ public class TestListNews1 extends ListActivity implements Runnable, AdapterView
         try {
             //从ListView中获取选中数据
             HashMap<String, String> map = (HashMap<String, String>) getListView().getItemAtPosition(position);
-            String ur = map.get("url");
+            String u = map.get("url");
+//            u = u.substring(2, 21);
+            String ur = "http://www.mrcj88.cn" + u;
+
 
 
             //打开新的页面
