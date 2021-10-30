@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.swufe.NewsShowing">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -11,21 +12,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true"
+        tools:targetApi="m">
         <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TestListActivity"></activity>
-        <activity android:name=".TestListNews1"></activity>
-        <activity android:name=".TestListNews2"></activity>
-        <activity android:name=".TestListNews3"></activity>
-        <activity android:name=".TestListNews4"></activity>
-        <activity android:name=".TestListNews5"></activity>
-        <activity android:name=".TestListNews6"></activity>
+        <activity android:name=".TestListActivity" />
+        <activity android:name=".TestListNews1" />
+        <activity android:name=".TestListNews2" />
+        <activity android:name=".TestListNews3" />
+        <activity android:name=".TestListNews4" />
+        <activity android:name=".TestListNews5" />
+        <activity android:name=".TestListNews6" />
     </application>
+
 </manifest>
