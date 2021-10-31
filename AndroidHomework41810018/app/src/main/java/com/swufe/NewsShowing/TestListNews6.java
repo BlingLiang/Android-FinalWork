@@ -64,7 +64,7 @@ public class TestListNews6 extends ListActivity implements Runnable, AdapterView
         ArrayList<HashMap<String, String>> listItems = new ArrayList<HashMap<String, String>>();
         for (int i = 0; i < 10; i++) {
             HashMap<String, String> map = new HashMap<String, String>();
-            map.put("Title", "title：" + i); // 标题文字
+            map.put("Title", "title：" + i+"：新闻正在爬取，请稍后2s"); // 标题文字
             listItems.add(map);
         }
         // 生成适配器的Item和动态数组对应的元素
