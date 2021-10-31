@@ -50,7 +50,6 @@ public class TestListNews1 extends ListActivity implements Runnable, AdapterView
                             new String[]{"Title", "url"},
                             new int[]{R.id.Title, R.id.url});
                     setListAdapter(adapter);
-
                 }
                 super.handleMessage(msg);
             }
@@ -62,7 +61,7 @@ public class TestListNews1 extends ListActivity implements Runnable, AdapterView
         ArrayList<HashMap<String, String>> listItems = new ArrayList<HashMap<String, String>>();
         for (int i = 0; i < 10; i++) {
             HashMap<String, String> map = new HashMap<String, String>();
-            map.put("Title", "title：" + i); // 标题文字
+            map.put("Title", "title：" + i+"：新闻正在爬取，请稍后"); // 标题文字
             listItems.add(map);
         }
         // 生成适配器的Item和动态数组对应的元素
@@ -86,7 +85,7 @@ public class TestListNews1 extends ListActivity implements Runnable, AdapterView
             //获取链接
             Elements lis = doc.getElementsByTag("li");
             Elements spans = main.getElementsByTag("a");
-            for (int j = 0; j <= 14; j++) {
+            for (int j = 0; j <= 13; j++) {
                 String content = lis.get(j+41).getElementsByTag("a").attr("href");
                 HashMap<String, String> map = new HashMap<String, String>();
                 map.put("url", content);
